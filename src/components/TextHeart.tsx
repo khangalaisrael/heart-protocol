@@ -22,12 +22,14 @@ export default function TextHeart() {
     let animationFrameId: number;
     let points: Point[] = [];
     const text = "i love you";
-    const fontSize = 14;
     let textHalfWidth = 0;
+    let fontSize = 14;
 
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      // Scale font down on small screens so text fits inside the heart
+      fontSize = window.innerWidth < 480 ? 9 : window.innerWidth < 768 ? 11 : 14;
       ctx.font = `${fontSize}px "Fira Code", monospace`;
       textHalfWidth = ctx.measureText(text).width / 2;
       initPoints();
